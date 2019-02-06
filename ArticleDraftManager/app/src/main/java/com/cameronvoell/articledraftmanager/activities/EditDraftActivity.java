@@ -1,9 +1,10 @@
 package com.cameronvoell.articledraftmanager.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.cameronvoell.articledraftmanager.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class EditDraftActivity extends AppCompatActivity {
 

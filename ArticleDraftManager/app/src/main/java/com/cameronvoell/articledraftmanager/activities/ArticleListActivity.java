@@ -2,16 +2,28 @@ package com.cameronvoell.articledraftmanager.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.cameronvoell.articledraftmanager.R;
+import com.cameronvoell.articledraftmanager.adapters.ArticleListAdapter;
+import com.cameronvoell.articledraftmanager.data.ArticleDraft;
+import com.cameronvoell.articledraftmanager.viewmodel.ArticleDraftViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import java.util.ArrayList;
+import java.util.List;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity {
+
+public class ArticleListActivity extends AppCompatActivity {
+
+    private ArticleDraftViewModel mArticleDraftViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +31,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        RecyclerView recyclerView = findViewById(R.id.articleListRecyclerView);
+        final ArticleListAdapter articleListAdapter = new ArticleListAdapter(this);
+        recyclerView.setAdapter(articleListAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Get a new or existing ViewModel from the ViewModelProvider.
+        mArticleDraftViewModel = ViewModelProviders.of(this).get(ArticleDraftViewModel.class);
+
+        mArticleDraftViewModel.getAllArticleDrafts().observe(this, new Observer<List<ArticleDraft>>() {
+            @Override
+            public void onChanged(@Nullable final List<ArticleDraft> articleDrafts) {
+                // Update the cached copy of the words in the adapter.
+                articleListAdapter.setArticleDrafts(articleDrafts);
+            }
+        });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

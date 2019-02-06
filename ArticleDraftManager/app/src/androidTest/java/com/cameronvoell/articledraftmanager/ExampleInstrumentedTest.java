@@ -7,7 +7,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.cameronvoell.articledraftmanager.activities.EditDraftActivity;
-import com.cameronvoell.articledraftmanager.activities.MainActivity;
+import com.cameronvoell.articledraftmanager.activities.ArticleListActivity;
 
 import static android.support.test.InstrumentationRegistry.getTargetContext;
 import static android.support.test.espresso.Espresso.onView;
@@ -32,8 +32,8 @@ import static org.junit.Assert.*;
 public class ExampleInstrumentedTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule =
-            new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<ArticleListActivity> mActivityTestRule =
+            new ActivityTestRule<>(ArticleListActivity.class);
 
     @Test
     public void useAppContext() {
