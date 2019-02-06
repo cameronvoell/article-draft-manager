@@ -16,9 +16,9 @@ public class ArticleDraft {
     public String mBody;
     @NonNull
     @ColumnInfo(name = "date")
-    public String mDate;
+    public long mDate;
 
-    public ArticleDraft(String title, String body, String date){
+    public ArticleDraft(String title, String body, long date){
         mTitle = title;
         mBody = body;
         mDate = date;

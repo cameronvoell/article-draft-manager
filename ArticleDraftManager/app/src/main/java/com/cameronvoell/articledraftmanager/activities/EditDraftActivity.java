@@ -26,7 +26,7 @@ public class EditDraftActivity extends AppCompatActivity {
     public void savePost(View view) {
         Toast.makeText(this, "article draft saved", Toast.LENGTH_SHORT).show();
         ArticleDraftRepository repository = new ArticleDraftRepository(getApplication());
-        repository.insert(new ArticleDraft(mTitleEditTextView.getText().toString(), mBodyEditTextView.getText().toString(), System.currentTimeMillis() + ""));
+        repository.insert(new ArticleDraft(mTitleEditTextView.getText().toString(), mBodyEditTextView.getText().toString(), System.currentTimeMillis()));
         finish();
     }
 }

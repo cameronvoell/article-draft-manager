@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.cameronvoell.articledraftmanager.R;
 import com.cameronvoell.articledraftmanager.data.ArticleDraft;
+import com.cameronvoell.articledraftmanager.utils.DateUtils;
+
 import java.util.Collections;
 import java.util.List;
 import androidx.annotation.NonNull;
@@ -45,7 +47,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         ArticleDraft articleDraft = mArticleDrafts.get(position);
         articlePreviewViewHolder.titleView.setText(articleDraft.mTitle);
         articlePreviewViewHolder.bodyView.setText(articleDraft.mBody);
-        articlePreviewViewHolder.dateView.setText(articleDraft.mDate);
+        articlePreviewViewHolder.dateView.setText(DateUtils.formatDate(articleDraft.mDate));
     }
 
     public void setArticleDrafts(List<ArticleDraft> articleDrafts) {

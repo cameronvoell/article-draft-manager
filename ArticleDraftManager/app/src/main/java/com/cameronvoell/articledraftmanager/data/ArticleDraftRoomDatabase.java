@@ -9,7 +9,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities={ArticleDraft.class}, version=1)
+@Database(entities={ArticleDraft.class}, version=2)
 public abstract class ArticleDraftRoomDatabase extends RoomDatabase {
 
     public abstract ArticleDraftDao articleDraftDao();
@@ -48,7 +48,7 @@ public abstract class ArticleDraftRoomDatabase extends RoomDatabase {
             super.onOpen(db);
             // If you want to keep the data through app restarts,
             // comment out the following line.
-            //new PopulateDbAsync(INSTANCE).execute();
+            new PopulateDbAsync(INSTANCE).execute();
         }
     };
 
@@ -70,10 +70,10 @@ public abstract class ArticleDraftRoomDatabase extends RoomDatabase {
             // Not needed if you only populate on creation.
             mDao.deleteAll();
 
-            ArticleDraft word = new ArticleDraft("Hello", "hello world", "sept 9, 1989");
-            mDao.insert(word);
-            word = new ArticleDraft("World", "who dat?", "sept 11, 1988");
-            mDao.insert(word);
+//            ArticleDraft word = new ArticleDraft("Hello", "hello world", "sept 9, 1989");
+//            mDao.insert(word);
+//            word = new ArticleDraft("World", "who dat?", "sept 11, 1988");
+//            mDao.insert(word);
             return null;
         }
     }
