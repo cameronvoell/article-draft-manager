@@ -8,7 +8,10 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "article_draft_table")
 public class ArticleDraft {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "draftId")
+    public int draftId = 0;
+
     @NonNull
     @ColumnInfo(name = "title")
     public String mTitle;

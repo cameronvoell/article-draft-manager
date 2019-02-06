@@ -9,7 +9,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities={ArticleDraft.class}, version=2)
+@Database(entities={ArticleDraft.class}, version=3)
 public abstract class ArticleDraftRoomDatabase extends RoomDatabase {
 
     public abstract ArticleDraftDao articleDraftDao();
@@ -48,7 +48,7 @@ public abstract class ArticleDraftRoomDatabase extends RoomDatabase {
             super.onOpen(db);
             // If you want to keep the data through app restarts,
             // comment out the following line.
-            new PopulateDbAsync(INSTANCE).execute();
+            //new PopulateDbAsync(INSTANCE).execute();
         }
     };
 
