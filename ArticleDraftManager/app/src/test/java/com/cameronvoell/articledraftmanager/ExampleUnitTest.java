@@ -20,6 +20,6 @@ public class ExampleUnitTest {
     @Test
     public void timeFormatIsCorrect() {
         //mock time is 1549483532780 for 12:05PM February 6, 2019)
-        assertEquals("12:05PM - Feb 06, 2019", DateUtils.formatDate(1549483532780l));
+        assertEquals("12:05:32 PM - Feb 06, 2019", DateUtils.formatDate(1549483532780l));
     }
 }
