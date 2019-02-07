@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ArticleListActivity extends AppCompatActivity {
 
     private ArticleDraftViewModel mArticleDraftViewModel;
+    private ArticleListAdapter.OnArticleDraftListInteractionListener mArticleInteractionListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,16 @@ public class ArticleListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         RecyclerView recyclerView = findViewById(R.id.articleListRecyclerView);
-        final ArticleListAdapter articleListAdapter = new ArticleListAdapter(this);
+        mArticleInteractionListener = new ArticleListAdapter.OnArticleDraftListInteractionListener() {
+            @Override
+            public void onArticleDraftListInteraction(ArticleDraft item) {
+                Intent intent = new Intent();
+                intent.putExtra(ArticleDraft.INTENT_EXTRA_NAME, item);
+                intent.setClass(getApplicationContext(), EditDraftActivity.class);
+                startActivity(intent);
+            }
+        };
+        final ArticleListAdapter articleListAdapter = new ArticleListAdapter(this, mArticleInteractionListener);
         recyclerView.setAdapter(articleListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

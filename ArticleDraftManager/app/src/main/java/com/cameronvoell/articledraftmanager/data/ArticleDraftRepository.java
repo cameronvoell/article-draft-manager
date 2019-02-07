@@ -24,24 +24,32 @@ public class ArticleDraftRepository {
         return mAllArticleDrafts;
     }
 
-    // You must call this on a non-UI thread or your app will crash.
-    // Like this, Room ensures that you're not doing any long running operations on the main
-    // thread, blocking the UI.
+
     public void insert(ArticleDraft articleDraft) {
         new insertAsyncTask(mArticleDraftDao).execute(articleDraft);
     }
-
     private static class insertAsyncTask extends AsyncTask<ArticleDraft, Void, Void> {
-
         private ArticleDraftDao mAsyncTaskDao;
-
         insertAsyncTask(ArticleDraftDao dao) {
             mAsyncTaskDao = dao;
         }
-
         @Override
         protected Void doInBackground(final ArticleDraft... params) {
             mAsyncTaskDao.insert(params[0]);
+            return null;
+        }
+    }
+    public void delete(ArticleDraft articleDraft) {
+        new deleteAsyncTask(mArticleDraftDao).execute(articleDraft);
+    }
+    private static class deleteAsyncTask extends AsyncTask<ArticleDraft, Void, Void> {
+        private ArticleDraftDao mAsyncTaskDao;
+        deleteAsyncTask(ArticleDraftDao dao) {
+            mAsyncTaskDao = dao;
+        }
+        @Override
+        protected Void doInBackground(final ArticleDraft... params) {
+            mAsyncTaskDao.delete(params[0]);
             return null;
         }
     }

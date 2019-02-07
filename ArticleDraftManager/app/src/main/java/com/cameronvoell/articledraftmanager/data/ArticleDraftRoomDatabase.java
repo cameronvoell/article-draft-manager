@@ -2,7 +2,6 @@ package com.cameronvoell.articledraftmanager.data;
 
 import android.content.Context;
 import android.os.AsyncTask;
-
 import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
@@ -77,26 +76,5 @@ public abstract class ArticleDraftRoomDatabase extends RoomDatabase {
             return null;
         }
     }
-
-
-    /*
-    Room is making me implement these...
-     */
-//    @NonNull
-//    @Override
-//    protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration config) {
-//        return null;
-//    }
-//
-//    @NonNull
-//    @Override
-//    protected InvalidationTracker createInvalidationTracker() {
-//        return null;
-//    }
-//
-//    @Override
-//    public void clearAllTables() {
-//
-//    }
 
 }

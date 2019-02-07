@@ -30,4 +30,8 @@ public class ArticleDraftViewModel extends AndroidViewModel {
         mRepository.insert(articleDraft);
     }
 
+    public void delete(ArticleDraft articleDraft) {
+        mRepository.delete(articleDraft);
+    }
+
 }

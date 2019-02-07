@@ -18,6 +18,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
 
     private final LayoutInflater mInflater;
     private List<ArticleDraft> mArticleDrafts = Collections.emptyList();
+    private OnArticleDraftListInteractionListener mListener;
 
     public class ArticlePreviewViewHolder extends RecyclerView.ViewHolder {
         private final TextView titleView;
@@ -31,8 +32,10 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         }
     }
 
-    public ArticleListAdapter(Context context) {
+    public ArticleListAdapter(Context context, OnArticleDraftListInteractionListener listener) {
         mInflater = LayoutInflater.from(context);
+        mListener = listener;
+
     }
 
     @NonNull
@@ -43,11 +46,18 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ArticlePreviewViewHolder articlePreviewViewHolder, int position) {
-        ArticleDraft articleDraft = mArticleDrafts.get(position);
+    public void onBindViewHolder(@NonNull ArticlePreviewViewHolder articlePreviewViewHolder, final int position) {
+        final ArticleDraft articleDraft = mArticleDrafts.get(position);
         articlePreviewViewHolder.titleView.setText(articleDraft.mTitle);
         articlePreviewViewHolder.bodyView.setText(articleDraft.mBody);
         articlePreviewViewHolder.dateView.setText(DateUtils.formatDate(articleDraft.mDate));
+
+        articlePreviewViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onArticleDraftListInteraction(articleDraft);
+            }
+        });
     }
 
     public void setArticleDrafts(List<ArticleDraft> articleDrafts) {
@@ -58,5 +68,9 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     @Override
     public int getItemCount() {
         return mArticleDrafts.size();
+    }
+
+    public interface OnArticleDraftListInteractionListener {
+        void onArticleDraftListInteraction(ArticleDraft item);
     }
 }
