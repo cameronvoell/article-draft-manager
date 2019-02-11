@@ -11,9 +11,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.EditDraftActivity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activities.ArticleListActivity"
+            android:name=".activities.BottomNavigationActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
